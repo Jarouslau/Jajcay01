@@ -4,10 +4,10 @@ $username = "userdb";
 $password = "databaza";
 $dbname = "northwind";
 
-// Vytvorenie pripojenia
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Kontrola pripojenia
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
