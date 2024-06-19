@@ -43,10 +43,10 @@
         }
 
         echo "<h1>požiadavka 01</h1>";
-        $sql = "SELECT SUM(UnitPrice * Quantity) AS TotalRevenueFrom1997 FROM `order details` od 
+        $sql = "SELECT SUM(UnitPrice * Quantity) AS TotalRevenueFrom1994 FROM `order details` od 
                 JOIN orders o ON od.OrderID = o.OrderID 
-                WHERE YEAR(o.OrderDate) = 1997";
-        execute_query($conn, $sql, "Celkové príjmy v roku 1997: ");
+                WHERE YEAR(o.OrderDate) = 1994";
+        execute_query($conn, $sql, "Celkové príjmy v roku 1994: ");
 
         echo "<h1>požiadavka 02</h1>";
         $sql = "SELECT CustomerID, SUM(UnitPrice * Quantity) AS TotalPaid FROM `order details` od 
@@ -82,20 +82,20 @@
         echo "<h1>požiadavka 06</h1>";
         $sql = "SELECT c.CustomerID, c.CompanyName, c.Country, 
                 SUM(od.UnitPrice * od.Quantity) AS TotalPaid, 
-                SUM(CASE WHEN YEAR(o.OrderDate) = 1997 THEN od.UnitPrice * od.Quantity ELSE 0 END) AS Paid1997 
+                SUM(CASE WHEN YEAR(o.OrderDate) = 1995 THEN od.UnitPrice * od.Quantity ELSE 0 END) AS Paid1997 
                 FROM `order details` od 
                 JOIN orders o ON od.OrderID = o.OrderID 
                 JOIN customers c ON o.CustomerID = c.CustomerID 
                 GROUP BY c.CustomerID";
-        execute_query($conn, $sql, "Celkové a ročné platby zákazníkov (rok 1997)");
+        execute_query($conn, $sql, "Celkové a ročné platby zákazníkov (rok 1995)");
 
         echo "<h1>požiadavka 07</h1>";
         $sql = "SELECT COUNT(DISTINCT CustomerID) AS TotalCustomers FROM orders";
         execute_query($conn, $sql, "Celkový počet zákazníkov zo všetkých objednávok");
 
         echo "<h1>požiadavka 08</h1>";
-        $sql = "SELECT COUNT(DISTINCT CustomerID) AS TotalCustomers1997 FROM orders WHERE YEAR(OrderDate) = 1997";
-        execute_query($conn, $sql, "Celkový počet zákazníkov z objednávok v roku 1997");
+        $sql = "SELECT COUNT(DISTINCT CustomerID) AS TotalCustomers1997 FROM orders WHERE YEAR(OrderDate) = 1996";
+        execute_query($conn, $sql, "Celkový počet zákazníkov z objednávok v roku 1996");
 
         mysqli_close($conn);
         ?>
